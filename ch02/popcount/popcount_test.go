@@ -31,10 +31,10 @@ func TestPopCountShift(t *testing.T) {
 	}
 }
 
-func TestPopCountFoo(t *testing.T) {
+func TestPopCountSmartShift(t *testing.T) {
 	var i uint64
 	for ; i < 1000; i++ {
-		if got, want := PopCountFoo(i), PopCountExp(i); got != want {
+		if got, want := PopCountSmartShift(i), PopCountSmartShift(i); got != want {
 			t.Errorf("PopCountFoo(%b) = %d, want %d", i, got, want)
 		}
 	}
@@ -60,8 +60,8 @@ func BenchmarkPopCountShift(b *testing.B) {
 	}
 }
 
-func BenchmarkPopCountFoo(b *testing.B) {
+func BenchmarkPopCountSmartShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PopCountFoo(testVal)
+		PopCountSmartShift(testVal)
 	}
 }

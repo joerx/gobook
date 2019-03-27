@@ -27,7 +27,7 @@ func main() {
 
 
   var i2 int8 = 127
-  fmt.Println(i2, i2+1, i2*i2)
+  fmt.Println(i2, i2+1, i2*i2) // 127, -128, -128?
 
   var i3 = 127
   fmt.Println(i3*i3, i3<<7-i3) // 127*127 = 127*(128-1) = 127*2^7 - 127 = 127<<7 - 127

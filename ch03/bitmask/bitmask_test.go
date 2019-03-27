@@ -2,47 +2,46 @@ package bitmask
 
 import (
   "testing"
-  "strconv"
 )
 
 func TestBitmask(t *testing.T) {
   tests := []struct {
     bitmask string
-    want string
+    want int
   } {
-    {"777", "111111111"},
-    {"775", "111111101"},
-    {"600", "110000000"},
-    {"644", "110100100"},
+    {"777", 0777},
+    {"775", 0775},
+    {"600", 0600},
+    {"644", 0644},
   }
 
   for _, test := range tests {
-    if got := Bitmask(test.bitmask); strconv.FormatInt(int64(got), 2) != test.want {
-      t.Errorf("Bitmask(%s), got %09b, want %s", test.bitmask, got, test.want)
+    if got := Bitmask(test.bitmask); got != test.want {
+      t.Errorf("Bitmask(%s), got %o, want %o", test.bitmask, got, test.want)
     }
   }
 }
 
 func TestIsSet(t *testing.T) {
   tests := []struct {
-    bitmask string
+    bitmask int
     role byte
     flag byte
     want bool
   } {
-    {"777", User, Read, true},
-    {"770", Other, Read, false},
-    {"770", Other, Write, false},
-    {"770", Other, Exec, false},
-    {"644", User, Exec, false},
-    {"644", User, Write, true},
-    {"644", Group, Read, true},
-    {"644", Group, Write, false},
+    {0777, User, Read, true},
+    {0770, Other, Read, false},
+    {0770, Other, Write, false},
+    {0770, Other, Exec, false},
+    {0644, User, Exec, false},
+    {0644, User, Write, true},
+    {0644, Group, Read, true},
+    {0644, Group, Write, false},
   }
 
   for _, test := range tests {
-    if got := IsSet(Bitmask(test.bitmask), test.role, test.flag); got != test.want {
-      t.Errorf("IsSet(%q, %d, %d), got %t, want %t", test.bitmask, test.role, test.flag, got, test.want)
+    if got := IsSet(test.bitmask, test.role, test.flag); got != test.want {
+      t.Errorf("IsSet(%o, %d, %d), got %t, want %t", test.bitmask, test.role, test.flag, got, test.want)
     }
   }
 }
