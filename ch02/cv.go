@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gobook/ch02/tempconv"
+	"github.com/joerx/gobook/ch02/tempconv"
 	"fmt"
 )
 
