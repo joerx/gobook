@@ -41,7 +41,27 @@ func PopCountLoop(num uint64) uint8 {
 	}
 	return res
 }
- 
+
+func PopCountShift(num uint64) uint8 {
+	var cnt uint8
+	for ; num > 0; num = num >> 1 {
+		cnt += byte(num & 1)
+	}
+	return cnt
+}
+
+/**
+ * Counts population taking advantage of x&(x-1) clearing the rightmost non-zero bit.
+ * Number of iterations needed to get x to zero is the amount of non-zero bits.
+ */
+func PopCountFoo(num uint64) uint8 {
+	var cnt uint8
+	for x := num; x > 0; x = x&(x-1) {
+		cnt++
+	}
+	return cnt
+}
+
 func printPopCount(num uint64) {
 	fmt.Printf("%s: %v\n", strconv.FormatInt(int64(num), 2), PopCountExp(num))
 }
