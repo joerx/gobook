@@ -1,4 +1,4 @@
-package tempconv
+package conv
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 
 const (
 	AbsoluteZeroC = -273.15
-	FreezingC = Celsius(0)
-	BoilingC = Celsius(100)
+	FreezingC     = Celsius(0)
+	BoilingC      = Celsius(100)
 )
 
 type Celsius float64
@@ -21,5 +21,5 @@ func (c Celsius) ToF() Fahrenheit {
 }
 
 func CToF(c Celsius) Fahrenheit {
-	return Fahrenheit(c * 9 / 5 + 32)
+	return Fahrenheit(c*9/5 + 32)
 }

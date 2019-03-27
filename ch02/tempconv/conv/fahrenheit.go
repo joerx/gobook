@@ -1,4 +1,4 @@
-package tempconv
+package conv
 
 import (
 	"fmt"
