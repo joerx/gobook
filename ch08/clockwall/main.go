@@ -14,19 +14,19 @@ import (
 func main() {
 	app := cli.NewApp()
 
-	app.Commands = []cli.Command{
+	app.Commands = []*cli.Command{
 		{
 			Name:    "server",
 			Aliases: []string{"s"},
 			Usage:   "Run as clockwall server",
 			Action:  server,
 			Flags: []cli.Flag{
-				cli.StringFlag{
+				&cli.StringFlag{
 					Name:  "address, a",
 					Value: ":8000",
 					Usage: "host and port to listen on",
 				},
-				cli.StringFlag{
+				&cli.StringFlag{
 					Name:  "label, l",
 					Usage: "label to identify the server",
 				},
@@ -38,7 +38,7 @@ func main() {
 			Usage:   "Run as clockwall client",
 			Action:  client,
 			Flags: []cli.Flag{
-				cli.StringSliceFlag{
+				&cli.StringSliceFlag{
 					Name:  "address, a",
 					Usage: "List of host/ports to listen on",
 				},
