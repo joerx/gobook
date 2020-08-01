@@ -14,11 +14,6 @@ func main() {
 	fmt.Fprintln(os.Stderr, "All done")
 }
 
-func fatal(err error) {
-	fmt.Fprint(os.Stderr, err)
-	os.Exit(1)
-}
-
 func fetchAll(urls []string, out io.Writer) error {
 	c := make(chan error)
 
