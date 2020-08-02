@@ -5,6 +5,7 @@ import (
 
 	"github.com/joerx/gobook/exercises/2.3/popcount1"
 	"github.com/joerx/gobook/exercises/2.3/popcount2"
+	"github.com/joerx/gobook/exercises/2.4/popcount3"
 )
 
 var tests = []struct {
@@ -35,6 +36,14 @@ func TestPopCount2(t *testing.T) {
 	}
 }
 
+func TestPopCount3(t *testing.T) {
+	for _, v := range tests {
+		if got := popcount3.PopCount(v.num); got != v.want {
+			t.Errorf("Wanted %d, got %d", v.want, got)
+		}
+	}
+}
+
 func BenchmarkPopCount1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		popcount1.PopCount(benchVal)
@@ -44,5 +53,11 @@ func BenchmarkPopCount1(b *testing.B) {
 func BenchmarkPopCount2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		popcount2.PopCount(benchVal)
+	}
+}
+
+func BenchmarkPopCount3(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		popcount3.PopCount(benchVal)
 	}
 }
